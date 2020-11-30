@@ -21,6 +21,12 @@ jobs:
 #      - run: python3 ./src/test_index.py
 #      - run: python3 ./src/test_demo.py
       - run:
+          name: Update Pip
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+      - run:
           name: Install Python deps in a venv
           command: |
             python3 -m venv venv
