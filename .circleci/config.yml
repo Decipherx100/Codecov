@@ -18,8 +18,20 @@ jobs:
 #      - run: pip install codecov
 #      - run: pip install pytest
 #      - run: pip install pytest-cov
-      - run: python3 ./src/test_index.py
-      - run: python3 ./src/test_demo.py
+#      - run: python3 ./src/test_index.py
+#      - run: python3 ./src/test_demo.py
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            mkdir test-results
+            pytest --junitxml=test-results/junit.xml
+
+      - store_test_results:
+          path: test-results
+
+      - store_artifacts:
+          path: test-results
 
 workflows:
   build_and_test:
