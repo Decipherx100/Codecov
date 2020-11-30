@@ -4,8 +4,10 @@ orbs:
   pytest: thekevjames/pytest@0.0.60
 jobs:
   build:    
+#    docker:
+#      - image: "circleci/python:3.6.4"
     docker:
-      - image: "circleci/python:3.6.4"
+      - image: circleci/python:3.6.2-stretch-browsers
     steps:
       - checkout
       - run: python3 ./src/index.py
