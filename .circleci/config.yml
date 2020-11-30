@@ -1,22 +1,54 @@
 version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.2
-  
+  pytest: thekevjames/pytest@0.0.60
 jobs:
   build:    
+#    docker:
+#      - image: "circleci/python:3.6.4"
     docker:
-      - image: "circleci/python:3.6.4"
+      - image: circleci/python:3.6.2-stretch-browsers
     steps:
       - checkout
       - run: python3 ./src/index.py
       - run: python3 ./src/demo.py
   test:
+#    docker:
+#      - image: "circleci/python:3.6.4"
     docker:
-      - image: "circleci/python:3.6.4"
+      - image: circleci/python:3.6.2-stretch-browsers
     steps:
       - checkout
+      - run: sudo pip install codecov
+      - run: sudo pip install -U pytest
+      - run: sudo pip install pytest-cov
+      - run: sudo pytest --cov=./ --cov-report=xml:reports/coverage.xml
       - run: python3 ./src/test_index.py
-      - run: python3 ./src/test_demo.py
+#      - run: python3 ./src/test_demo.py
+#      - run:
+#          name: Update Pip
+#          command: |
+#            python3 -m venv venv
+#           . venv/bin/activate
+#            pip install --upgrade pip
+#      - run:
+#          name: Install Python deps in a venv
+#          command: |
+#            python3 -m venv venv
+#            . venv/bin/activate
+#            pip install -r requirements/dev.txt
+#      - run:
+#          name: run tests
+#          command: |
+#            . venv/bin/activate
+#            mkdir test-results
+#            pytest --junitxml=test-results/junit.xml
+
+#      - store_test_results:
+#          path: test-results
+
+#      - store_artifacts:
+#          path: test-results
 
 workflows:
   build_and_test:
