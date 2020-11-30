@@ -19,10 +19,11 @@ jobs:
       - image: circleci/python:3.6.2-stretch-browsers
     steps:
       - checkout
-#      - run: pip install codecov
-      - run: pip install -U pytest
-#      - run: pip install pytest-cov
-#      - run: python3 ./src/test_index.py
+      - run: sudo pip install codecov
+      - run: sudo pip install -U pytest
+      - run: sudo pip install pytest-cov
+      - run: sudo pytest --cov=./ --cov-report=xml:reports/coverage.xml
+      - run: python3 ./src/test_index.py
 #      - run: python3 ./src/test_demo.py
 #      - run:
 #          name: Update Pip
