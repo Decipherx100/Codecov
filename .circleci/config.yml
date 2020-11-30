@@ -24,6 +24,7 @@ jobs:
       - run: sudo pip install pytest-cov
       - run: sudo pytest --cov=./ --cov-report=xml:reports/coverage.xml
       - run: python3 ./src/test_index.py
+      - run: python3 ./src/test_demo.py
       - codecov/upload:
           file: './reports/coverage.xml'
           token: edf37198-1d1c-45df-a1d3-60db2e489d39
