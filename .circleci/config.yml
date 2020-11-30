@@ -1,15 +1,13 @@
 version: 2.1
 
 jobs:
-  build:
-    working_directory: ~/src
+  build:    
     docker:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
-      - run: python3 index.py
+      - run: python3 ./src/index.py
   test:
-    working_directory: ~/src
     docker:
       - image: "circleci/python:3.6.4"
     steps:
