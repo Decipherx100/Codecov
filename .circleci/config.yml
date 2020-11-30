@@ -14,7 +14,7 @@ jobs:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
-      - run: python3 index.py
+      - run: python3 ./src/index.py
 
 workflows:
   build_and_test:
