@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.2
-  
+  pytest: thekevjames/pytest@0.0.60
 jobs:
   build:    
     docker:
@@ -16,8 +16,8 @@ jobs:
     steps:
       - checkout
 #      - run: pip install codecov
-      - run: pip install pytest
-      - run: pip install pytest-cov
+#      - run: pip install pytest
+#      - run: pip install pytest-cov
       - run: python3 ./src/test_index.py
       - run: python3 ./src/test_demo.py
 
